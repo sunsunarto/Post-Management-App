@@ -17,7 +17,7 @@ function App() {
       fetchPosts()
     },[])
     const addPost = (newPost) => {
-      setPost([...posts, newPost]);
+      setPost([newPost,...posts ]);
   };
 
   return (
