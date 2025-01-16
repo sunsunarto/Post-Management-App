@@ -1,11 +1,12 @@
 import React from 'react'
-import PostItem from './PostItem.jsx'
-
-function PostList({ post }) {
+function PostList({ posts }) {
   return (
-    <div className='postItem'>
-        {post.map((post) => (
-            <PostItem key={post.id} post={post} />
+    <div >
+        {posts.map((post, index) => (
+            <div className='postContent'  key={index}>
+              <h2>{post.title}</h2>
+              <p>{post.body}</p>
+            </div>
         ))}
     </div>
   )

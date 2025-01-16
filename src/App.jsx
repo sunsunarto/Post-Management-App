@@ -4,20 +4,20 @@ import PostList from './Components/PostList.jsx'
 import axios from 'axios'
 import PostForm from './Components/PostForm.jsx'
 function App() {
-  const [post,setPost]= useState([])
+  const [posts,setPost]= useState([])
     useEffect (() => {
-      const fetchPost = async () => {
+      const fetchPosts = async () => {
       try{
         const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
         setPost(response.data)
       }catch(error){
-        console.error(error)
+        console.error('Error fetching posts:',error)
       }
       }  
-      fetchPost()
+      fetchPosts()
     },[])
     const addPost = (newPost) => {
-      setPost([...post, newPost]);
+      setPost([...posts, newPost]);
   };
 
   return (
@@ -25,7 +25,7 @@ function App() {
           <h1>Post Management App</h1>
           <PostForm addPost={addPost} />
           <h1>Recent Post</h1>
-          <PostList post={post} />
+          <PostList posts={posts} />
       </div>
   );
 };

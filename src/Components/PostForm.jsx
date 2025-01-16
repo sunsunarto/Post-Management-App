@@ -1,14 +1,29 @@
 import React,{useState} from "react";
-
+import axios from "axios";
 function PostForm ({addPost}){
     const [title,setTitle] = useState('')
     const [body,setBody] = useState('')
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        addPost(title,body)
-        setTitle('')
-        setBody('')
-    }
+    const handleSubmit =  (e) => {
+        e.preventDefault();
+        try {
+          axios.post('https://jsonplaceholder.typicode.com/posts', {
+            title: title,
+            body: body
+          })
+          .then((res) => {
+         console.log(res)
+         const newPost = {title, body}
+         addPost(newPost)
+         setTitle('')
+         setBody('')
+          })
+          .catch((err) => {
+           console.log(err)
+         })
+        } catch (error) {
+          console.log(error)
+        }
+}
     return (
         <div className="inputSubmit">
             <form onSubmit={handleSubmit}>
@@ -19,4 +34,5 @@ function PostForm ({addPost}){
         </div>
     );
 }
+
 export default PostForm
