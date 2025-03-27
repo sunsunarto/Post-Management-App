@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import PostList from './Components/PostList.jsx';
-import axios from 'axios';
+import axios from 'Axios';
 import PostForm from './Components/PostForm.jsx';
 
 function App() {
